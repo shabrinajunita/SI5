@@ -1,77 +1,42 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
+   session_start();
+   if(isset($_SESSION['username'])) {
+   header('location:home.php'); }
+   require_once("koneksi.php");
 ?>
-
-<?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
-?>
-<!DOCTYPE HTML>
 <html>
 <head>
-<title>Data Praktikan Sistem Informasi 5</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<link href="css/font-awesome.css" rel="stylesheet">
-<!-- Custom Theme files -->
-<script src="js/jquery-1.12.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!--animate-->
-<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
-	</script>
-<!--//end-animate-->
+    <title>login</title>
+    <link rel="stylesheet" href="sign in style.css">
 </head>
 <body>
-<?php include('includes/header.php');?>
-<div class="banner">
+	<div class="main-wthree">
 	<div class="container">
-		<h1 class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">Laboratorium Sistem Informasi 5</h1>
-	</div>
-</div>
-
-<!---data---->
-<div class="container">
-	<div class="holiday" background="pink">
-	<h3>Data Praktikan</h3>
-<?php $sql = "SELECT * from datamhs ";
-$query = $dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{	?>
-			<div class="rom-btm">
-				<div class="col-md-3 room-left wow fadeInLeft animated" data-wow-delay=".5s">
-				
-					<img src="admin/pics/<?php echo htmlentities($result->image);?>" class="img-responsive" height="150" width="120"alt="">
-				</div>
-				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s" background="pink">
-					<h4><?php echo htmlentities($result->nama);?></h4>
-					<h5>NIM			: <?php echo htmlentities($result->nim);?></h5>
-					<h5>TTL			: <?php echo htmlentities($result->ttl);?></h5>
-					<h5>Hobi		: <?php echo htmlentities($result->hobi);?></h5>
-					<h5>Alamat		: <?php echo htmlentities($result->alamat);?></h5>
-					<h5>Cita-cita	: <?php echo htmlentities($result->cita);?></h5>
-					<h5>Tinggi (cm)	: <?php echo htmlentities($result->tinggi);?></h5>
-				</div>
+	<div class="sin-w3-agile">
+		<h2>Sign In</h2>
+		<form  method="post" action="proses.php">
+			<div class="username">
+				<span class="username">Username:</span>
+				<input type="text" name="username" class="name" placeholder="" required="">
 				<div class="clearfix"></div>
 			</div>
-<?php }} ?>
-<?php include('includes/footer.php');?>
+			<div class="password-agileits">
+				<span class="username">Password:</span>
+				<input type="password" name="password" class="password" placeholder="" required="">
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="login-w3">
+					<input type="submit" class="login" name="login" value="login">
+			</div>
+			<div class="clearfix"></div>
+		</form>
+				<div class="back">
+					<a href="../index.php">Back to home</a>
+				</div>
+				
+	</div>
+	</div>
+	</div>
 </body>
 </html>
